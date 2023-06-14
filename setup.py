@@ -191,7 +191,7 @@ if __name__ == '__main__':
         long_description=readme(),
         keywords='computer vision, human pose estimation',
         url='https://github.com/MVIG-SJTU/AlphaPose',
-        packages=find_namespace_packages(where='.', include=['alphapose', 'detector', 'trackers', 'configs']),
+        packages=find_namespace_packages(where='.', include=['alphapose*', 'detector*', 'trackers*', 'configs*']),
         package_dir = {
             'alphapose': 'alphapose',
             "alphapose.detector": "detector",
