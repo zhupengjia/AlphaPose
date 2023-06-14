@@ -5,7 +5,7 @@ import time
 
 import numpy as np
 from Cython.Build import cythonize
-from setuptools import Extension, find_namespace_packages, setup
+from setuptools import Extension, setup
 from torch.utils.cpp_extension import BuildExtension, CUDAExtension
 
 MAJOR = 0
@@ -74,8 +74,8 @@ short_version = '{}'
     sha = get_hash()
     VERSION = SHORT_VERSION + '+' + sha
 
-    # with open(version_file, 'w') as f:
-    #     f.write(content.format(time.asctime(), VERSION, SHORT_VERSION))
+    with open(version_file, 'w') as f:
+        f.write(content.format(time.asctime(), VERSION, SHORT_VERSION))
 
 
 def get_version():
@@ -191,9 +191,12 @@ if __name__ == '__main__':
         long_description=readme(),
         keywords='computer vision, human pose estimation',
         url='https://github.com/MVIG-SJTU/AlphaPose',
-        packages=find_namespace_packages(include=['alphapose.*', 'detector.*', 'trackers.*', 'configs.*'],
-                                        exclude=["examples", "scripts", 'data', 'exp',]
-                                         ),
+        packages=["alphapose", "detector", "trackers"],
+        package_dir = {
+            'alphapose': 'alphapose',
+            "alphapose.detector": "detector",
+            "alphapose.trackers": "trackers"
+        },
         package_data={'': ['*.json', '*.txt'],},
         classifiers=[
             'Development Status :: 4 - Beta',
